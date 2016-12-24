@@ -15,7 +15,7 @@ class App extends Component{
 		// initial state
 		this.state = {
 			fishes: {},
-			order:{}
+			order:{},
 		}
 	}
 	componentWillMount(){
@@ -30,7 +30,6 @@ class App extends Component{
 		const localStorageRef = localStorage.getItem(`order-${storeId}`)
 		if(localStorageRef){
 			const order = JSON.parse(localStorageRef)
-			console.log({order})
 			this.setState({order})
 		}
 	}
@@ -55,7 +54,6 @@ class App extends Component{
 
 	updateFish = (key, fish) => {
 		const fishes = {...this.state.fishes, [key]:fish}
-		console.log('UpdateFish', {fishes})
 		this.setState({fishes})
 	}
 	removeFish = (key) => {
@@ -76,14 +74,13 @@ class App extends Component{
 		this.setState({order})
 	}
 	removeOrder = (key) => {
-		console.log('Remove order', key)
 		const order = {...this.state.order}
 		delete order[key]
 
 		localStorage.removeItem(key)
 		this.setState({order})
 	}
-	render(){
+  render() {
 		return (
 			<div className='catch-of-the-day'>
 				<div className='menu'>
@@ -92,7 +89,7 @@ class App extends Component{
 						{
 							Object
 							.keys(this.state.fishes)
-							.map(fish => <Fish id={fish} key={fish} {...this.state.fishes[fish]} addToOrder={this.addToOrder}/>)
+							.map(fish => <Fish id={fish} key={fish} fish={this.state.fishes[fish]} addToOrder={this.addToOrder}/>)
 						}
 					</ul>
 				</div>
@@ -108,10 +105,13 @@ class App extends Component{
 					loadSamples={this.loadSamples}
 					updateFish={this.updateFish}
 					removeFish={this.removeFish}
+					storeId={this.props.params.storeId}
 				/>
 			</div>
 		)
 	}
 }
-
+App.propTypes = {
+	params: React.PropTypes.object.isRequired
+}
 export default App;
