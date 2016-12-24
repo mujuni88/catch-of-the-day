@@ -10,13 +10,13 @@ import sampleFishes from './sample-fishes'
 import base from './base'
 
 class App extends Component{
+	state = {
+		fishes: {},
+		order:{},
+	}
+
 	constructor(){
 		super()
-		// initial state
-		this.state = {
-			fishes: {},
-			order:{},
-		}
 	}
 	componentWillMount(){
 		// runs before app is rendered
@@ -110,8 +110,9 @@ class App extends Component{
 			</div>
 		)
 	}
-}
-App.propTypes = {
-	params: React.PropTypes.object.isRequired
+
+	static propTypes = {
+		params: React.PropTypes.object.isRequired
+	}
 }
 export default App;
