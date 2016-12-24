@@ -5,18 +5,19 @@ import {formatPrice} from '../helpers'
 
 class Order extends Component{
   renderOrder = (key) => {
-    const {order, fishes} = this.props
+    const {order, fishes, removeOrder} = this.props
     const fish = fishes[key]
     const count = order[key]
-
+    const removeOrderBtn = <button onClick={()=>removeOrder(key)}>&times;</button>
     if(!fish || fish.status === 'unavailable'){
-      return <li key={key}>Sorry, {fish ? fish.name : 'Fish'} is no longer available!</li>
+      return <li key={key}>Sorry, {fish ? fish.name : 'Fish'} is no longer available! {removeOrderBtn}</li>
     }
 
     return (
       <li key={key}>
         <span>{count}lbs {fish.name}</span>
         <span className='price'>{formatPrice(count * fish.price)}</span>
+        {removeOrderBtn}
       </li>
     )
   }

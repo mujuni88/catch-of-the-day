@@ -14,7 +14,7 @@ class AddFishForm extends Component {
     }
 
     this.props.addFish(fish)
-    this.fishForm.reset()  
+    this.fishForm.reset()
   }
   render() {
     return (
