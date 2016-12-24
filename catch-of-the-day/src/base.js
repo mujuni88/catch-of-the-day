@@ -5,3 +5,5 @@ const base = Rebase.createClass({
    authDomain: "catch-of-the-day-8a07b.firebaseapp.com",
    databaseURL: "https://catch-of-the-day-8a07b.firebaseio.com"
 })
+
+export default base
